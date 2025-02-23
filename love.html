@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love for Farhana</title>
+    <style>
+        body {
+            background-color: #f5e6cc; /* Creamy skin color */
+            color: brown;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 2; /* Text stays under falling flowers */
+        }
+        .flowers {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none; /* Prevents flowers from interfering with clicks */
+        }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            animation: fall linear infinite;
+            z-index: 3; /* Flowers fall over text */
+            pointer-events: auto; /* Allow clicking on flowers */
+        }
+        @keyframes fall {
+            from { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            to { transform: translateY(100vh) rotate(360deg); opacity: 0.8; }
+        }
+        .message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 20px;
+            display: none;
+            font-weight: bold;
+        }
+        .enlarged {
+            width: 250px !important;
+            height: 250px !important;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            z-index: 1000 !important;
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        Asking that name was just an excuse. Actually, I wanted to say <br>
+        <b>I love you Farhana (chummi dedo ek 🐢)</b>
+    </div>
+    <div class="flowers"></div>
+    <div class="message" id="messageText">Yes, take it. It is for you only Farhana</div>
+
+    <script>
+        const flowerImages = [
+            "https://cdn-icons-png.flaticon.com/512/2909/2909767.png",
+            "https://cdn-icons-png.flaticon.com/512/415/415731.png",
+            "https://cdn-icons-png.flaticon.com/512/2272/2272892.png",
+            "https://cdn-icons-png.flaticon.com/512/415/415731.png",
+            "https://cdn-icons-png.flaticon.com/512/616/616490.png"
+        ];
+
+        function createFlower() {
+            let flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.style.backgroundImage = `url(${flowerImages[Math.floor(Math.random() * flowerImages.length)]})`;
+            document.querySelector(".flowers").appendChild(flower);
+
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+            flower.addEventListener("click", function() {
+                document.getElementById("messageText").style.display = "block";
+                let clonedFlower = flower.cloneNode(true);
+                clonedFlower.classList.add("enlarged");
+                document.body.appendChild(clonedFlower);
+                
+                setTimeout(() => {
+                    clonedFlower.remove();
+                }, 3000);
+            });
+
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+
+        setInterval(createFlower, 200);
+    </script>
+</body>
+</html>

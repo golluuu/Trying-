@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Your Name</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('https://i.imgur.com/D1f2oQy.png') repeat; /* Cute flower doodle background */
+            background-size: 100px;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Your Name:</h2>
+        <input type="text" id="nameInput" placeholder="Your Name">
+        <br><br>
+        <button onclick="goToNextPage()">Submit</button>
+    </div>
+
+    <script>
+        function goToNextPage() {
+            var name = document.getElementById("nameInput").value;
+            localStorage.setItem("username", name);
+            window.location.href = "love.html";
+        }
+    </script>
+</body>
+</html>
